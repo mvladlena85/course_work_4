@@ -11,6 +11,9 @@ from project.models import Genre, Director, Movie, User
 class GenresDAO(BaseDAO[Genre]):
     __model__ = Genre
 
+    def get_by_name(self, name):
+        return self._db_session.query(self.__model__).filter(self.__model__.name == name).first()
+
 
 class DirectorsDAO(BaseDAO[Genre]):
     __model__ = Director
@@ -32,7 +35,17 @@ class MoviesDAO(BaseDAO[Genre]):
         return stmt.all()
 
 
-
-
 class UsersDAO(BaseDAO[Genre]):
     __model__ = User
+
+    def register_user(self, user):
+        self._db_session.add(user)
+        self._db_session.commit()
+        return user
+
+    def get_by_email(self, email):
+        try:
+            return self._db_session.query(self.__model__).filter(self.__model__.email == email).all()[0]
+        except Exception as e:
+            print(e)
+            return None
