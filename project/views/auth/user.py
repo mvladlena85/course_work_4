@@ -15,6 +15,9 @@ class UsersView(Resource):
     @api.response(404, 'Not Found')
     @api.marshal_with(user, code=200, description='OK')
     def get(self):
+        """
+        Вывод данных пользователя.
+        """
         headers = request.headers['Authorization']
         token = headers.split("Bearer ")[-1]
         data = get_token_data(token)
@@ -24,6 +27,9 @@ class UsersView(Resource):
     @token_check
     @api.response(404, 'Not Found')
     def patch(self):
+        """
+        Обновление данных пользователя.
+        """
         headers = request.headers['Authorization']
         token = headers.split("Bearer ")[-1]
         data = get_token_data(token)
@@ -40,6 +46,9 @@ class UsersView(Resource):
 class UserPasView(Resource):
     @token_check
     def put(self):
+        """
+        Обновление пароля.
+        """
         headers = request.headers['Authorization']
         token = headers.split("Bearer ")[-1]
         data = get_token_data(token)

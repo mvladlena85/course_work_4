@@ -12,7 +12,7 @@ class DirectorsService:
     def get_item(self, pk: int) -> Director:
         if director := self.dao.get_by_id(pk):
             return director
-        raise ItemNotFound(f'Genre with pk={pk} not exists.')
+        raise ItemNotFound(f'Director with pk={pk} not exists.')
 
     def get_all(self, page: Optional[int] = None) -> list[Director]:
         return self.dao.get_all(page=page)
