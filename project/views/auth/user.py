@@ -13,7 +13,7 @@ api = Namespace('user')
 class UsersView(Resource):
     @token_check
     @api.response(404, 'Not Found')
-    @api.marshal_with(user, as_list=True, code=200, description='OK')
+    @api.marshal_with(user, code=200, description='OK')
     def get(self):
         headers = request.headers['Authorization']
         token = headers.split("Bearer ")[-1]
