@@ -17,8 +17,8 @@ class Director(models.Base):
     __tablename__ = 'director'
 
     name = Column(String(255), unique=True, nullable=False)
-    
-    
+
+
 class Movie(models.Base):
     """
     Модель SQLAlchemy для объекта "фильм".
@@ -44,5 +44,5 @@ class User(models.Base):
     password = Column(String, nullable=False)
     name = Column(String)
     surname = Column(String)
-    favorite_genre = Column(Integer, ForeignKey("genres.id"))
+    favorite_genre = Column(Integer, ForeignKey("genres.id"), nullable=False)
     genre = relationship("Genre")

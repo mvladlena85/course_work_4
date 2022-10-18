@@ -33,3 +33,8 @@ class BaseDAO(Generic[T]):
 
     def get_all_order_by(self, page: Optional[int] = None, filter = None):
         return self._db_session.query(self.__model__).order_by(self.__model__.id).all()
+
+    def update(self, ent):
+        self._db_session.add(ent)
+        self._db_session.commit()
+        return ent

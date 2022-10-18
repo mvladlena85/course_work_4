@@ -14,7 +14,7 @@ director: Model = api.model('Режиссер', {
 })
 
 
-movie: Model = api.model('Режиссер', {
+movie: Model = api.model('Фильм', {
     'id': fields.Integer(required=True, example=1),
     'title': fields.String(required=True, max_length=100, example='Тейлор Шеридан'),
     'description': fields.String(required=True, max_length=100, example='Тейлор Шеридан'),
@@ -23,4 +23,12 @@ movie: Model = api.model('Режиссер', {
     'rating': fields.Float(required=True),
     'genre': fields.Nested(genre, required=True),
     'director': fields.Nested(director, required=True)
+})
+
+
+user: Model = api.model('Пользователь', {
+    'email': fields.String(required=True, example='filler@mail.ru'),
+    'name': fields.String(required=True, max_length=100, example='Тейлор'),
+    'surname': fields.String(required=True, max_length=100, example='Шеридан'),
+    'favorite_genre': fields.Nested(genre, required=True)
 })
